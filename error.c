@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 19:17:35 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/09 21:35:50 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/11 19:55:24 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,19 @@ char	*ft_mess_error(int e)
 		return ("Error, too few arguments\n");
 	if (e == 2)
 		return ("Error, too much arguments\n");
-	if (e==3)
-		return("Error, character not allowd in map\n"); //fonction check_map
+	if (e == 3)
+		return("Error, character not allowed in map\n");
+	if (e == 4)
+		return("Error, we need only on player and at least one exit and one collectible in map\n");
+	if (e == 5)
+		return("Return of -1 of GNL\n");
+	if (e == 6)
+		return("Error, File is a directory\n");
+	if (e == 7)
+		return("Error, bad Extension file\n");
+	if (e == 8)
+		return("Error, invalid name\n");
+		//fonction check_map
 	return ("Error");
 }
 

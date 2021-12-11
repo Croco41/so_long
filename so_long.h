@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 15:29:34 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/09 21:24:16 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/11 19:44:34 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,20 @@ typedef struct s_map
 	int			nbcollecti;
 	int			nbexit;
 	int			nbplayer;
+	int			nbline;
 	t_player	player;
 }				t_map;
 
 int		main(int argc, char **argv);
+t_map	**ft_open_map(t_map **map, int fd);
+int		ft_opencheckfile(char *s);
 char	*ft_mess_error(int e);
+
+int		ft_str_comp(char *s1, char s2);
+int		ft_strlen(char *str)
+int		check_map_first_lastline(char *str, char c);
+int		check_inter_line(char *str, char c);
+int		check_form_map(char *str, char *strnext);
+int		check_map;
 
 #endif

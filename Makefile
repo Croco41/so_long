@@ -6,7 +6,7 @@
 #    By: cgranja <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 15:09:13 by cgranja           #+#    #+#              #
-#    Updated: 2021/12/11 19:45:04 by cgranja          ###   ########.fr        #
+#    Updated: 2021/12/12 20:06:19 by cgranja          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC		=	main.c \
 			parsing.c \
 			utils/ft_str_comp.c \
 			utils/ft_strlen.c \
+			utils/ft_strdup.c \
 
 OBJ		=	$(SRC:%.c=%.o)
 

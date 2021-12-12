@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 19:17:35 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/11 19:55:24 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/12 18:53:53 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ char	*ft_mess_error(int e)
 		return("Error, bad Extension file\n");
 	if (e == 8)
 		return("Error, invalid name\n");
+	if (e == 9)
+		return ("Error, Return of -1 of GNL create map\n");
+	if (e == 10)
+		return ("Error, map is not rectangular\n");
 		//fonction check_map
 	return ("Error");
 }

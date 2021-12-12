@@ -6,13 +6,13 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 21:01:37 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/11 19:43:59 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/12 20:05:06 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int check_map_first_lastline(char *str, char c)
+int check_map_first_lastline(char *str, char c) // c = 1
 {
 	int	i;
 
@@ -42,6 +42,34 @@ int check_inter_line(char *str, char c)
 	return (0);
 }
 
+int	ft_nbline_checkform(int fd, int y)
+{
+	char	*line;
+	int		sizel;
+	int		ret;
+
+	ret = get_next_line(fd, &line);
+	if (ret == -1)
+		return (ft_error(ft_mess_error(5), 5));
+	sizel = ft_strlen(line);
+	free(line);
+	y++;
+	while (ret == 1)
+	{
+		ret = get_next_line(fd, &line);
+		if (ret == -1)
+			return (ft_error(ft_mess_error(5), 5));
+		if ((line[0] != '\0' && ft_strlen(line) != sizel)
+			|| (line[0] == '\0' && ret == 1))
+			return (ft_error(ft_mess_error(10), 10));
+		if (line[0] != '\0')
+			y++;
+		free(line);
+	}
+	return (y);
+}
+
+/*
 int	check_form_map(char *str, char *strnext)
 {
 	int	size;
@@ -51,9 +79,8 @@ int	check_form_map(char *str, char *strnext)
 	i = ft_strlen(strnext);
 	if (size != i)
 		return (1);
-	else 
-		return (0);
-}
+	return (0);
+}*/
 
 int	check_map(char *s, t_map *map, int l)
 {

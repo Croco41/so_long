@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 15:29:34 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/11 19:44:34 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/12 15:38:37 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,13 @@ typedef struct s_map
 	int			nbline;
 	t_player	player;
 }				t_map;
+
+typedef struct s_admin
+{
+	t_map		map;
+	t_mlx		mlx
+}				t_admin;
+
 
 int		main(int argc, char **argv);
 t_map	**ft_open_map(t_map **map, int fd);

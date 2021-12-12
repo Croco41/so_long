@@ -6,13 +6,13 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 15:27:31 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/11 20:03:56 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/12 20:00:28 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_map		**ft_open_map(t_map **map, int fd)
+/*t_map		**ft_open_map(t_map **map, int fd)
 {
 	char	*line;
 	int		ret;
@@ -20,10 +20,82 @@ t_map		**ft_open_map(t_map **map, int fd)
 	ret = get_next_line(fd, &line);
 	if (ret == -1)
 		return (ft_error(ft_mess_error(5), 5);
+	while (ret > 0)
+	{
+		
 
+
+
+
+
+
+	}
+	close(fd);
+	free(line);
+	return (0);
+}*/
+
+int	ft_create_map(t_admin *admin, char *s, int fd, int y)
+{
+	char	*line;
+	int		ret;
+
+	ret = get_next_line(fd, &line);
+	if (ret == -1)
+		return (ft_error(ft_mess_error(9), 9));
+	if (check_map(s, admin->map->map, y) != 0)
+		return (1);
+	y++;
+	while (ret == 1)
+	{
+		if (check_map(s, admin->map->map, y) != 0)
+			return (1);
+		admin->map->map[y] = ft_strdup(line);
+		free(line);
+		if (admin->map->map  == NULL)
+			return(//faire ft_free_line(ret, line, admin));
+		ret = get_next_line(fd, &line);
+		y++;
+	}
+	free(line);
+	if (map->player != 1 || map->nbexit == 0 || map->nbcollecti == 0)
+		return (ft_error(ft_mess_error(4), 4));
+	return (0);
 }
 
-int			ft_opencheckfile(char *s)
+int	ft_check_wall_map(t_admin *admin, char *s, int fd, int y)
+{
+	char	*line
+	int		ret;
+
+	ret = get_next_line(fd, &line);
+	if (ret == -1)
+		return (ft_error(ft_mess_error(9), 9));
+	if (check_map_first_lastline(line, '1') != 0)
+		return (1);
+	admin->map->map[y] =ft_strdup(line);
+	free(line);
+	y++;
+	while (ret == 1)
+	{
+		ret = get_next_line(fd, &line);
+		admin->map->map[y] = ft_strdup(line);
+		if (check_inter_line(admin->map->map, y) != 0)
+			return (1);
+		free(line);
+//		if (admin->map->map  == NULL)
+//			return(//faire ft_free_line(ret, line, admin));
+		y++;
+	}
+	if (check_map_first_lastline(admin->map->map[--y], '1') != 0)
+		return (1);
+	return (0);
+}
+
+
+
+
+int	ft_opencheckfile(char *s)
 {
 	int	i;
 	int size;
@@ -48,6 +120,10 @@ int			main(int argc, char **argv)
 		printf (ft_error(ft_mess_error(2), 2);
 	if (ft_opencheckfile(argv[1]) != 0)
 		return (1);
+	list_init(....);
+	//parse map
+	//start mlx(&all.mlx ,&all)
+
 	
 	
 //appel de la fnction parsing

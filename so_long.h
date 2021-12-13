@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 15:29:34 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/12 15:38:37 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/13 18:36:22 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,21 @@ typedef struct s_admin
 int		main(int argc, char **argv);
 t_map	**ft_open_map(t_map **map, int fd);
 int		ft_opencheckfile(char *s);
+
+int		ft_create_map(t_admin *admin, char *s, int fd, int y);
+int		ft_check_wall_map(t_admin *admin, char *s, int fd, int y);
+
 char	*ft_mess_error(int e);
 
 int		ft_str_comp(char *s1, char s2);
 int		ft_strlen(char *str)
 int		check_map_first_lastline(char *str, char c);
 int		check_inter_line(char *str, char c);
-int		check_form_map(char *str, char *strnext);
+int		ft_nbline_checkform(int fd, int y);
 int		check_map;
 
+t_admin *ft_parse_map(t_admin *admin, char *argv);
+
+void	ft_free_map(t_map *map);
+void	ft_free_all_mlx(t_mlx *mlx);
 #endif

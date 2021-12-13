@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 15:27:31 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/12 20:00:28 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/13 18:03:13 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	ft_create_map(t_admin *admin, char *s, int fd, int y)
 	char	*line;
 	int		ret;
 
+	init_map(&map);
 	ret = get_next_line(fd, &line);
 	if (ret == -1)
 		return (ft_error(ft_mess_error(9), 9));
@@ -53,7 +54,7 @@ int	ft_create_map(t_admin *admin, char *s, int fd, int y)
 		admin->map->map[y] = ft_strdup(line);
 		free(line);
 		if (admin->map->map  == NULL)
-			return(//faire ft_free_line(ret, line, admin));
+			return(1);
 		ret = get_next_line(fd, &line);
 		y++;
 	}
@@ -120,7 +121,7 @@ int			main(int argc, char **argv)
 		printf (ft_error(ft_mess_error(2), 2);
 	if (ft_opencheckfile(argv[1]) != 0)
 		return (1);
-	list_init(....);
+	init_struct(&admin);
 	//parse map
 	//start mlx(&all.mlx ,&all)
 

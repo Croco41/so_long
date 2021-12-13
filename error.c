@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 19:17:35 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/12 18:53:53 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/13 16:48:57 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*ft_mess_error(int e)
 		return ("Error, Return of -1 of GNL create map\n");
 	if (e == 10)
 		return ("Error, map is not rectangular\n");
+	if (e == 11)
+		return ("Error, Crash of Malloc\n");
 		//fonction check_map
 	return ("Error");
 }

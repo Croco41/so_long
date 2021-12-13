@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 21:01:37 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/12 20:05:06 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/13 17:44:52 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,6 @@ int	check_map(char *s, t_map *map, int l)
 //		if (map->player != 1 || map->nbexit == 0 || map->nbcollecti == 0)
 //			return (ft_error(ft_mess_error(4), 4));
 	}
+	
 	return (0);
 }

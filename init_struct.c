@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 13:27:52 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/13 16:24:37 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/14 16:53:57 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,17 @@ void	init_map(t_map *map)
 
 void	init_struct(t_admin *admin)
 {
-	admin->map->map = NULL;
-	admin->map->nbline = 0;
-	admin->map->player->move = 0;
-	admin->map->player.x = 0;
-	admin->map->player.y = 0;
+	admin->map.map = NULL;
+	admin->map.nbline = 0;
+	admin->map.player->move = 0;
+	admin->map.player.x = 0;
+	admin->map.player.y = 0;
 	init_mlx(&admin->mlx);
 }
 
 void	list_init(t_img *cimg, t_mlx *cmlx, t_map *cmap)
 {
 	init_img(cimg);
-	init(cmlx);
-	init(cmap);
+	init_mlx(cmlx);
+	init_map(cmap);
 }

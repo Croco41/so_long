@@ -6,7 +6,7 @@
 #    By: cgranja <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 15:09:13 by cgranja           #+#    #+#              #
-#    Updated: 2021/12/13 18:26:31 by cgranja          ###   ########.fr        #
+#    Updated: 2021/12/14 16:27:10 by cgranja          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,13 @@ SRC		=	main.c \
 			check.c \
 			parsing.c \
 			free.c \
+			init_struct.c \
 			utils/ft_str_comp.c \
 			utils/ft_strlen.c \
 			utils/ft_strdup.c \
+			utils/get_next_line.c \
+			utils/get_next_line_utils.c \
+			testmap.ber \
 
 OBJ		=	$(SRC:%.c=%.o)
 
@@ -56,7 +60,7 @@ f 		:	$(OBJ)
 
 fre		:	fclean f
 
-.PHONY clean fclean re fre 
+.PHONY : clean fclean re fre 
 
 
 

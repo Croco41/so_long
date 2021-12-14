@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 19:43:08 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/13 18:36:29 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/13 20:58:07 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ t_admin	*ft_parse_map(t_admin *admin, char *argv)
 	if (admin->map->map == NULL)
 		return (NULL);
 	if (ft_check_wall_map(admin, argv, fd, 0) > 0)
-		return (f
-
+	{
+		ft_free_map(&admin->map);
+		return (NULL);
+	}
 	return (admin);
 }

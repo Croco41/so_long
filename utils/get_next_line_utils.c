@@ -1,35 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/12 16:45:49 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/14 17:06:59 by cgranja          ###   ########.fr       */
+/*   Created: 2021/12/14 15:57:50 by cgranja           #+#    #+#             */
+/*   Updated: 2021/12/14 16:01:05 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-char	*ft_strdup(char *str)
+int	ft_strn(char *s)
 {
-	char	*result;
-	size_t	i;
-	size_t	sizestr;
+	int	i;
 
-	sizestr = ft_strlen(str);
-	i = 0;
-	if (str == NULL)
-		return (NULL);
-	result = (char *)malloc(sizeof(char) * sizestr + 1);
-	if (!result)
+	if (!s)
 		return (0);
-	while (str[i])
+	i = 0;
+	while (s[i] && s[i] != '\n')
+		i++;
+	return (i);
+}
+
+char	*ft_strjoin_gnl(char *s1, char *s2)
+{
+	size_t	i;
+	size_t	j;
+	char	*str;
+
+	str = malloc(sizeof(char) * ((ft_strlen(s1) + ft_strlen(s2)) + 1));
+	if (str == NULL)
+		exit (-1);
+	str[0] = '\0';
+	i = 0;
+	while (s1 && s1[i])
 	{
-		result[i] = str[i];
+		str[i] = s1[i];
 		i++;
 	}
-	result[i] = '\0';
-	return (result);
+	j = 0;
+	while (s2 && s2[j])
+	{
+		str[i + j] = s2[j];
+		j++;
+	}
+	str[i + j] = '\0';
+	return (str);
 }

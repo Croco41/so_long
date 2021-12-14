@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 21:01:37 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/13 17:44:52 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/14 13:54:40 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int check_map_first_lastline(char *str, char c) // c = 1
 	int	i;
 
 	i = 0;
-	while (*s)
+	while (*str)
 	{
-		if (s[i] != c)
+		if (str[i] != c)
 			return (1);
 		i++
 	}
@@ -32,11 +32,11 @@ int check_inter_line(char *str, char c)
 
 	i = 0;
 
-	while (*s)
+	while (*str)
 	{
-		if (s[0] != c)
+		if (str[0] != c)
 			return (1);
-		if (s[ft_strlen(str)] != c)
+		if (str[ft_strlen(str)] != c)
 			return (1);
 	}
 	return (0);
@@ -92,8 +92,8 @@ int	check_map(char *s, t_map *map, int l)
 		if (s[i] == 'P')
 		{
 			map->nbplayer++;
-			map->player->x = i;
-			map->player->y = l;
+			map->player.x = i;
+			map->player.y = l;
 		}
 		if (s[i] == 'E')
 			map->nbexit++;

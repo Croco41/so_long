@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 17:48:52 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/13 18:25:22 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/15 15:18:12 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,23 @@ void	ft_free_map(t_map *map)
 
 void	ft_free_all_mlx(t_mlx *mlx)
 {
-	if (mlx->collectible)
-		mlx_destroy_image(mlx->mlx, mlx->collectible)
-	if (mlx->player)
-		mlx_destroy_image(mlx->mlx, mlx->player);
-	if (mlx->ground)
-		mlx_destroy_image(mlx->mlx, mlx->ground);
-	if (mlx->wall)
-		mlx_destroy_image(mlx->mlx, mlx->wall);
-	if (mlx->exit)
-		mlx_destroy_image(mlx->mlx, mlx->exit);
-	if (mlx->window)
-		mlx_destroy_image(mlx->mlx, mlx->window);
+	if (mlx->collectible.img)
+		mlx_destroy_image(mlx->mlx, mlx->collectible.img);
+	if (mlx->player.img)
+		mlx_destroy_image(mlx->mlx, mlx->player.img);
+	if (mlx->ground.img)
+		mlx_destroy_image(mlx->mlx, mlx->ground.img);
+	if (mlx->wall.img)
+		mlx_destroy_image(mlx->mlx, mlx->wall.img);
+	if (mlx->exit.img)
+		mlx_destroy_image(mlx->mlx, mlx->exit.img);
+	if (mlx->window.img)
+		mlx_destroy_image(mlx->mlx, mlx->window.img);
 	if (mlx->mlx_win)
 		mlx_destroy_window(mlx->mlx, mlx->mlx_win);
 	if (mlx->mlx)
 	{
-		mlx_destroy_display(mlx->mlx)
+		mlx_destroy_display(mlx->mlx);
 		free(mlx->mlx);
 	}
 }

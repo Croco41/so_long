@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 19:17:35 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/14 17:22:43 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/15 14:07:22 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ char	*ft_mess_error(int e)
 }
 
 
-void	*ft_error(char *str, int e) //en char *str :fonctin ft_mess_error
+void	*ft_error(char *str, void *e) //en char *str :fonctin ft_mess_error
 {
 	int i;
 
 	i = -1;
 	while (str[++i])
 		write (2, &str[i], 1);
-	return ;
+	return (e);
 }
 
 int	ft_error_int(char *str, int e)

@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 15:29:34 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/14 17:28:44 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/15 14:08:03 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,14 @@ int		main(int argc, char **argv);
 t_map	**ft_open_map(t_map **map, int fd);
 int		ft_opencheckfile(char *s);
 
-int		ft_create_map(t_admin *admin, char *s, int fd, int y);
-int		ft_check_wall_map(t_admin *admin, char *s, int fd, int y);
+int		ft_create_map(t_admin *admin, t_map *map, char *s, int fd, int y);
+int		ft_check_wall_map(t_admin *admin, int fd, int y);
 
 char	*ft_mess_error(int e);
-void	*ft_error(char *str, int e);
+void	*ft_error(char *str, void *e);
 int		ft_error_int(char *str, int e);
 
-int		ft_strncmp(char *s1, char s2, size_t n);
+int		ft_strncmp(char *s1, char *s2, size_t n);
 int		ft_strlen(char *str);
 char	*ft_strdup(char *s);
 int		get_next_line(int fd, char **line);
@@ -109,9 +109,9 @@ char	*strjoin_gnl(char *s1, char *s2);
 int		check_map_first_lastline(char *str, char c);
 int		check_inter_line(char *str, char c);
 int		ft_nbline_checkform(int fd, int y);
-int		check_map(char *s, t_map **map, int l);
+int		check_map(char *s, t_map *map, int l);
 
-t_admin *ft_parse_map(t_admin *admin, char *argv);
+t_admin *ft_parse_map(t_admin *admin, t_map *map, char *argv);
 
 void	ft_free_map(t_map *map);
 void	ft_free_all_mlx(t_mlx *mlx);

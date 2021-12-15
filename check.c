@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 21:01:37 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/14 13:54:40 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/15 14:10:29 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,13 @@ int check_map_first_lastline(char *str, char c) // c = 1
 	{
 		if (str[i] != c)
 			return (1);
-		i++
+		i++;
 	}
 	return (0);
 }
 
-int check_inter_line(char *str, char c)
+int check_inter_line(char *str, char c) // a appeler pour chaque lignea verifier
 {
-	int	i;
-
-	i = 0;
-
 	while (*str)
 	{
 		if (str[0] != c)
@@ -50,7 +46,7 @@ int	ft_nbline_checkform(int fd, int y)
 
 	ret = get_next_line(fd, &line);
 	if (ret == -1)
-		return (ft_error(ft_mess_error(5), 5));
+		return (ft_error_int(ft_mess_error(5), 5));
 	sizel = ft_strlen(line);
 	free(line);
 	y++;
@@ -58,10 +54,10 @@ int	ft_nbline_checkform(int fd, int y)
 	{
 		ret = get_next_line(fd, &line);
 		if (ret == -1)
-			return (ft_error(ft_mess_error(5), 5));
+			return (ft_error_int(ft_mess_error(5), 5));
 		if ((line[0] != '\0' && ft_strlen(line) != sizel)
 			|| (line[0] == '\0' && ret == 1))
-			return (ft_error(ft_mess_error(10), 10));
+			return (ft_error_int(ft_mess_error(10), 10));
 		if (line[0] != '\0')
 			y++;
 		free(line);
@@ -100,8 +96,8 @@ int	check_map(char *s, t_map *map, int l)
 		if (s[i] == 'C')
 			map->nbcollecti++;
 		if (s[i] != '1' && s[i] != '0' && s[i] != 'P' && s[i] != 'E'
-			& s[i] != 'C')
-			return (ft_error(ft_mess_error(3), 3));
+			&& s[i] != 'C')
+			return (ft_error_int(ft_mess_error(3), 3));
 //		if (map->player != 1 || map->nbexit == 0 || map->nbcollecti == 0)
 //			return (ft_error(ft_mess_error(4), 4));
 	}

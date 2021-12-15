@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 15:27:31 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/14 17:25:52 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/15 15:12:54 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 	return (0);
 }*/
 
-int	ft_create_map(t_admin *admin, char *s, int fd, int y)
+int	ft_create_map(t_admin *admin, t_map *map, char *s, int fd, int y)
 {
 	char	*line;
 	int		ret;
@@ -44,7 +44,7 @@ int	ft_create_map(t_admin *admin, char *s, int fd, int y)
 	ret = get_next_line(fd, &line);
 	if (ret == -1)
 		return (ft_error_int(ft_mess_error(9), 9));
-	if (check_map(s, admin(&map), y) != 0)
+	if (check_map(s, map, y) != 0)
 		return (1);
 	y++;
 	while (ret == 1)
@@ -59,12 +59,12 @@ int	ft_create_map(t_admin *admin, char *s, int fd, int y)
 		y++;
 	}
 	free(line);
-	if (map->player != 1 || map->nbexit == 0 || map->nbcollecti == 0)
+	if (map->nbplayer != 1 || map->nbexit == 0 || map->nbcollecti == 0)
 		return (ft_error_int(ft_mess_error(4), 4));
 	return (0);
 }
 
-int	ft_check_wall_map(t_admin *admin, char *s, int fd, int y)
+int	ft_check_wall_map(t_admin *admin, int fd, int y)
 {
 	char	*line;
 	int		ret;
@@ -81,7 +81,7 @@ int	ft_check_wall_map(t_admin *admin, char *s, int fd, int y)
 	{
 		ret = get_next_line(fd, &line);
 		admin->map.map[y] = ft_strdup(line);
-		if (check_inter_line(admin->map.map, y) != 0)
+		if (check_inter_line(admin->map.map[y], 1) != 0)
 			return (1);
 		free(line);
 //		if (admin->map->map  == NULL)
@@ -95,11 +95,9 @@ int	ft_check_wall_map(t_admin *admin, char *s, int fd, int y)
 
 int	ft_opencheckfile(char *s)
 {
-	int	i;
 	int size;
 
 	size = ft_strlen(s);
-	i = 0;
 	if (open(s, O_DIRECTORY) > 0)
 		return (ft_error_int(ft_mess_error(6), 6));
 	if (size <= 4)
@@ -112,16 +110,18 @@ int	ft_opencheckfile(char *s)
 int	main(int argc, char **argv)
 {
 	t_admin *admin;
+	t_map	*map;
 
+	map = NULL;
 	admin = NULL;
 	if (argc < 2)
 		return (ft_error_int(ft_mess_error(1), 1));
 	if (argc > 2)
-		printf (ft_error(ft_mess_error(2), 2));
+		return (ft_error_int(ft_mess_error(2), 2));
 	if (ft_opencheckfile(argv[1]) != 0)
 		return (1);
-	init_struct(&admin);
-	admin = ft_parse_map(admin, argv[1]);
+	init_struct(admin);
+	admin = ft_parse_map(admin, map, argv[1]);
 	if (admin == NULL)
 		return (1);
 	ft_free_map(&admin->map);

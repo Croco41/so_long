@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 15:29:34 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/15 14:08:03 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/15 18:22:22 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define GREY "\033[1;37m"
 # define RESET "\033[0m"
 
+# define BUFFER_SIZE 1024
 
 typedef struct s_img
 {
@@ -82,7 +83,7 @@ void	init_img(t_img *cimg);
 void	init_mlx(t_mlx *cmlx);
 void	init_map(t_map *map);
 void	init_struct(t_admin *admin);
-void	list_init(t_img *cimg, t_mlx *cmlx, t_map *cmap);
+void	list_init(t_img *img, t_mlx *mlx);
 
 
 
@@ -90,7 +91,7 @@ int		main(int argc, char **argv);
 t_map	**ft_open_map(t_map **map, int fd);
 int		ft_opencheckfile(char *s);
 
-int		ft_create_map(t_admin *admin, t_map *map, char *s, int fd, int y);
+int		ft_create_map(t_admin *admin, char *s, int fd, int y);
 int		ft_check_wall_map(t_admin *admin, int fd, int y);
 
 char	*ft_mess_error(int e);
@@ -102,7 +103,7 @@ int		ft_strlen(char *str);
 char	*ft_strdup(char *s);
 int		get_next_line(int fd, char **line);
 int		ft_strn(char *s);
-char	*strjoin_gnl(char *s1, char *s2);
+char	*ft_strjoin_gnl(char *s1, char *s2);
 
 
 
@@ -111,7 +112,7 @@ int		check_inter_line(char *str, char c);
 int		ft_nbline_checkform(int fd, int y);
 int		check_map(char *s, t_map *map, int l);
 
-t_admin *ft_parse_map(t_admin *admin, t_map *map, char *argv);
+int	ft_parse_map(t_admin *admin, char *argv);
 
 void	ft_free_map(t_map *map);
 void	ft_free_all_mlx(t_mlx *mlx);

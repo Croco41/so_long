@@ -6,11 +6,13 @@
 #    By: cgranja <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 15:09:13 by cgranja           #+#    #+#              #
-#    Updated: 2021/12/14 16:27:10 by cgranja          ###   ########.fr        #
+#    Updated: 2021/12/15 17:31:03 by cgranja          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	so_long
+
+LIB		=	-L minilibx-linux -lmlx -lXext -lX11 -lm
 
 SRC		=	main.c \
 			error.c \
@@ -23,27 +25,31 @@ SRC		=	main.c \
 			utils/ft_strdup.c \
 			utils/get_next_line.c \
 			utils/get_next_line_utils.c \
-			testmap.ber \
 
 OBJ		=	$(SRC:%.c=%.o)
 
 CC		=	gcc
 
-RM		=	rm -f
-
+RM		=	/usr/bin/rm -f
+$(MAKE) = /usr/bin/make
 CFLAGS		=	-Wall -Wextra -Werror
 
 CFS			=	-fsanitize=address -g3
 
-.c.o:
-			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
-
-$(NAME) :	$(OBJ)
-			$(CC) $(CFLAGS) -o $(NAME) $(SRC)
 
 all		:	$(NAME)
 
+.c.o:
+			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+
+$(NAME) :	mlx $(OBJ)
+			$(CC) $(CFLAGS) -o $(NAME) $(SRC) $(LIB)
+
+mlx		:
+			$(MAKE) -C minilibx-linux
+
 clean	:
+			$(MAKE) -C minilibx-linux clean
 			$(RM) $(OBJ)
 
 fclean	:	clean
@@ -55,12 +61,12 @@ fclean	:	clean
 
 re		:	fclean all
 
-f 		:	$(OBJ)
-			$(CC) $(CFLAGS) $(CFS) -o $(NAME) $(SRC)
+f 		:	mlx $(OBJ)
+			$(CC) $(CFLAGS) $(CFS) -o $(NAME) $(SRC) $(LIB)
 
 fre		:	fclean f
 
-.PHONY : clean fclean re fre 
+.PHONY : all mlx clean fclean re f fre 
 
 
 

@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 21:01:37 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/15 14:10:29 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/15 18:59:37 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,13 @@ int	check_map(char *s, t_map *map, int l)
 			map->nbplayer++;
 			map->player.x = i;
 			map->player.y = l;
+			i++;
 		}
-		if (s[i] == 'E')
+		else if (s[i++] == 'E')
 			map->nbexit++;
-		if (s[i] == 'C')
+		else if (s[i++] == 'C')
 			map->nbcollecti++;
-		if (s[i] != '1' && s[i] != '0' && s[i] != 'P' && s[i] != 'E'
-			&& s[i] != 'C')
+		else if (s[i++] != '1' || s[i] != '0')
 			return (ft_error_int(ft_mess_error(3), 3));
 //		if (map->player != 1 || map->nbexit == 0 || map->nbcollecti == 0)
 //			return (ft_error(ft_mess_error(4), 4));

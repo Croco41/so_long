@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 19:42:23 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/14 13:43:19 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/15 16:17:29 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int ft_strlen(char *str)
 	lenght = 0;
 	if (!str)
 		return (0);
-	while (str)
+	while (str[lenght])
 		lenght++;
 	return (lenght);
 }

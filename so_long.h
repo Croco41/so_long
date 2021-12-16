@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 15:29:34 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/15 18:22:22 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/16 18:06:39 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ int		main(int argc, char **argv);
 t_map	**ft_open_map(t_map **map, int fd);
 int		ft_opencheckfile(char *s);
 
-int		ft_create_map(t_admin *admin, char *s, int fd, int y);
-int		ft_check_wall_map(t_admin *admin, int fd, int y);
+int		ft_create_map(t_admin *admin, int fd, int y);
+int		ft_check_wall_map(t_admin *admin, int y);
 
 char	*ft_mess_error(int e);
 void	*ft_error(char *str, void *e);
@@ -110,7 +110,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2);
 int		check_map_first_lastline(char *str, char c);
 int		check_inter_line(char *str, char c);
 int		ft_nbline_checkform(int fd, int y);
-int		check_map(char *s, t_map *map, int l);
+int		check_map(t_map *map, int l);
 
 int	ft_parse_map(t_admin *admin, char *argv);
 

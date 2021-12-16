@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 21:01:37 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/15 18:59:37 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/16 17:16:46 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,14 @@ int	check_form_map(char *str, char *strnext)
 	return (0);
 }*/
 
-int	check_map(char *s, t_map *map, int l)
+int	check_map(t_map *map, int l)
 {
-	int	i;
+	int		i;
+	char	*s;
 
+	s = map->map[l];
 	i = -1;
+//printf("%s \n %d line: \n" , s, l);
 	while (s[++i])
 	{
 		if (s[i] == 'P')
@@ -90,13 +93,12 @@ int	check_map(char *s, t_map *map, int l)
 			map->nbplayer++;
 			map->player.x = i;
 			map->player.y = l;
-			i++;
 		}
-		else if (s[i++] == 'E')
+		else if (s[i] == 'E')
 			map->nbexit++;
-		else if (s[i++] == 'C')
+		else if (s[i] == 'C')
 			map->nbcollecti++;
-		else if (s[i++] != '1' || s[i] != '0')
+		else if (s[i] != '1' && s[i] != '0')
 			return (ft_error_int(ft_mess_error(3), 3));
 //		if (map->player != 1 || map->nbexit == 0 || map->nbcollecti == 0)
 //			return (ft_error(ft_mess_error(4), 4));

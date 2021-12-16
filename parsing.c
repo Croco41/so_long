@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 19:43:08 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/15 18:24:25 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/16 18:14:08 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ int	ft_parse_map(t_admin *admin, char *argv)
 		i++;
 	}
 	fd = open(argv, O_RDONLY);
-	ft_create_map(admin, argv, fd, 0);
-	close (fd);
+	ft_create_map(admin, fd, 0);
+	close(fd);
 	if (admin->map.map == NULL)
 		return (1);
-	if (ft_check_wall_map(admin, fd, 0) > 0)
+	if (ft_check_wall_map(admin, 0) > 0)
 	{
 		ft_free_map(&admin->map);
 		return (1);

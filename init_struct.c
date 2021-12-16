@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 13:27:52 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/15 17:50:30 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/16 18:30:57 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,20 @@ void	init_mlx(t_mlx *mlx)
 	init_img(&mlx->exit);
 }
 
-void	init_map(t_map *map)
+/*void	init_map(t_map *map)
 {
 	map->nbcollecti = 0;
 	map->nbexit = 0;
 	map->nbplayer = 0;
 	map->nbline = 0;
-}
+}*/
 
 void	init_struct(t_admin *admin)
 {
 	admin->map.map = NULL;
+	admin->map.nbcollecti = 0;
+	admin->map.nbexit = 0;
+	admin->map.nbplayer = 0;
 	admin->map.nbline = 0;
 	admin->map.player.move = 0;
 	admin->map.player.x = 0;

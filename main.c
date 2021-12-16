@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 15:27:31 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/15 19:00:14 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/16 18:13:35 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 	return (0);
 }*/
 
-int	ft_create_map(t_admin *admin, char *s, int fd, int y)
+int	ft_create_map(t_admin *admin, int fd, int y)
 {
 	char	*line;
 	int		ret;
@@ -43,19 +43,21 @@ int	ft_create_map(t_admin *admin, char *s, int fd, int y)
 	ret = get_next_line(fd, &line);
 	if (ret == -1)
 		return (ft_error_int(ft_mess_error(9), 9));
-	if (check_map(s, &admin->map, y) != 0)
-		return (1);
-	y++;
 	while (ret == 1)
 	{
-		if (check_map(s, &admin->map, y) != 0)
-			return (1);
 		admin->map.map[y] = ft_strdup(line);
 		free(line);
-		if (admin->map.map  == NULL)
+		if (check_map(&admin->map, y) != 0)
+			return (1);
+		if (admin->map.map[y]  == NULL)
+		{
+			ft_free_map(&admin->map);
 			return(1);
-		ret = get_next_line(fd, &line);
+		}
 		y++;
+		ret = get_next_line(fd, &line);
+		if (ret == -1)
+			return (ft_error_int(ft_mess_error(9), 9));
 	}
 	free(line);
 	if (admin->map.nbplayer != 1 || admin->map.nbexit == 0 
@@ -64,34 +66,56 @@ int	ft_create_map(t_admin *admin, char *s, int fd, int y)
 	return (0);
 }
 
-int	ft_check_wall_map(t_admin *admin, int fd, int y)
+	
+int	ft_check_wall_map(t_admin *admin, int y)
+{
+	if (check_map_first_lastline(admin->map.map[y], '1') != 0)
+		return (1);
+	y++;
+	while (y < admin->map.nbline - 1)
+	{
+		if (check_inter_line(admin->map.map[y], 1) != 0)
+			return (1);
+		y++;
+	}
+	if (check_map_first_lastline(admin->map.map[y], '1') != 0)
+		return (1);
+	return (0);
+}
+
+
+/*int	ft_check_wall_map(t_admin *admin, int fd, char *argv, int y)
 {
 	char	*line;
 	int		ret;
 
+	fd = open(argv, O_RDONLY);
 	ret = get_next_line(fd, &line);
 	if (ret == -1)
 		return (ft_error_int(ft_mess_error(9), 9));
-	if (check_map_first_lastline(line, '1') != 0)
-		return (1);
 	admin->map.map[y] = ft_strdup(line);
 	free(line);
+	if (check_map_first_lastline(admin->map.map[y], '1') != 0)
+		return (1);
 	y++;
 	while (ret == 1)
 	{
 		ret = get_next_line(fd, &line);
+		if (ret == -1)
+			return (ft_error_int(ft_mess_error(9), 9));
 		admin->map.map[y] = ft_strdup(line);
+		free(line);
 		if (check_inter_line(admin->map.map[y], 1) != 0)
 			return (1);
-		free(line);
 //		if (admin->map->map  == NULL)
 //			return(//faire ft_free_line(ret, line, admin));
 		y++;
 	}
 	if (check_map_first_lastline(admin->map.map[--y], '1') != 0)
 		return (1);
+	close(fd);
 	return (0);
-}
+}*/
 
 int	ft_opencheckfile(char *s)
 {

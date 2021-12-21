@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 19:17:35 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/15 14:07:22 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/21 15:13:33 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,15 @@ char	*ft_mess_error(int e)
 		return ("Error, map is not rectangular\n");
 	if (e == 11)
 		return ("Error, Crash of Malloc\n");
-		//fonction check_map
+	return ("Error");
+}
+
+char	*ft_mess_error_mlx(int e)
+{
+	if (e == 1)
+		return ("Error, mlx is not initialised\n");
+	if (e == 2)
+		return ("Error, mlx window is not created\n");
 	return ("Error");
 }
 

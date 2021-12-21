@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 15:27:31 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/16 18:13:35 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/20 15:34:15 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,15 +119,20 @@ int	ft_check_wall_map(t_admin *admin, int y)
 
 int	ft_opencheckfile(char *s)
 {
-	int size;
+	int	size;
+	int	fd;
 
-	if (open(s, O_DIRECTORY) > 0)
-		return (ft_error_int(ft_mess_error(6), 6));
+	fd = open(s, O_RDONLY);
+	if (fd == -1)
+		return (ft_error_int("Error during opening of fd", 0));
+	close(fd);
 	size = ft_strlen(s) - 1;
 	if (size <= 3)
 		return (ft_error_int(ft_mess_error(8), 8));
 	if (ft_strncmp(s, ".ber", size) != 0)
 		return (ft_error_int(ft_mess_error(7), 7));
+	if (open(s, O_DIRECTORY) > 0)
+		return (ft_error_int(ft_mess_error(6), 6));
 	return (0);
 }
 
@@ -143,7 +148,8 @@ int	main(int argc, char **argv)
 		return (1);
 	init_struct(&admin);
 	ft_parse_map(&admin, argv[1]);
-//	&admin->mlx.mlx =mlx_init;
+/*	if (!mlx_start(&admin.mlx, &admin));
+		return (1);*/
 	return (0);
 }
 //parse map

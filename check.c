@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 21:01:37 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/16 17:16:46 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/21 15:08:09 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int check_map_first_lastline(char *str, char c) // c = 1
 	int	i;
 
 	i = 0;
+	if (!str || str[0] == '\0')
+		return (1);
 	while (*str)
 	{
 		if (str[i] != c)
@@ -55,10 +57,14 @@ int	ft_nbline_checkform(int fd, int y)
 		ret = get_next_line(fd, &line);
 		if (ret == -1)
 			return (ft_error_int(ft_mess_error(5), 5));
-		if ((line[0] != '\0' && ft_strlen(line) != sizel)
+		if ((ret == 1 && line[0] != '\0' && ft_strlen(line) != sizel)
 			|| (line[0] == '\0' && ret == 1))
+		{
+			free(line);
 			return (ft_error_int(ft_mess_error(10), 10));
-		if (line[0] != '\0')
+		}
+		y++;
+		if (ret == 0 && line[0] != '\0')
 			y++;
 		free(line);
 	}
@@ -85,6 +91,7 @@ int	check_map(t_map *map, int l)
 
 	s = map->map[l];
 	i = -1;
+	map->sizeline = ft_strlen(s);
 //printf("%s \n %d line: \n" , s, l);
 	while (s[++i])
 	{

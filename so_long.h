@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 15:29:34 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/16 18:06:39 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/21 15:16:47 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define RESET "\033[0m"
 
 # define BUFFER_SIZE 1024
+# define PIX 64
 
 typedef struct s_img
 {
@@ -47,6 +48,8 @@ typedef struct s_mlx
 {
 	void		*mlx;
 	void		*mlx_win;
+	int			width;
+	int			height;
 	t_img		window;
 	t_img		collectible;
 	t_img		player;
@@ -68,6 +71,7 @@ typedef struct s_map
 	int			nbcollecti;
 	int			nbexit;
 	int			nbplayer;
+	int			sizeline;
 	int			nbline;
 	t_player	player;
 }				t_map;
@@ -95,6 +99,7 @@ int		ft_create_map(t_admin *admin, int fd, int y);
 int		ft_check_wall_map(t_admin *admin, int y);
 
 char	*ft_mess_error(int e);
+char	*ft_mess_error_mlx(int e);
 void	*ft_error(char *str, void *e);
 int		ft_error_int(char *str, int e);
 
@@ -113,6 +118,12 @@ int		ft_nbline_checkform(int fd, int y);
 int		check_map(t_map *map, int l);
 
 int	ft_parse_map(t_admin *admin, char *argv);
+
+
+
+//int	mlx_start(t_mlx *mlx, t_admin *admin);
+
+
 
 void	ft_free_map(t_map *map);
 void	ft_free_all_mlx(t_mlx *mlx);

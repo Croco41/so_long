@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 13:27:52 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/16 18:30:57 by cgranja          ###   ########.fr       */
+/*   Updated: 2021/12/16 19:05:44 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	init_mlx(t_mlx *mlx)
 {
 	mlx->mlx = NULL;
 	mlx->mlx_win = NULL;
+	mlx->width = 0;
+	mlx->height = 0;
 	init_img(&mlx->window);
 	init_img(&mlx->collectible);
 	init_img(&mlx->player);

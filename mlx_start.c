@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 18:51:17 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/21 16:23:14 by cgranja          ###   ########.fr       */
+/*   Updated: 2022/01/04 17:44:13 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,21 @@ static void	ft_close(int keycode, t_mlx *mlx)
 		free(mlx->mlx);
 }
 
+void	img_to_win(char c, t_mlx *mlx, t_admin *admin)
+{
+	if (c == '0')
+		mlx_put_image_to_window(mlx, mlx_win, mlx->ground, 0, 0);
+	if (c == '1')
+		mlx_put_image_to_window(mlx, mlx_win, mlx->wall, 0, 0);
+	if (c == 'C')
+		mlx_put_image_to_window(mlx, mlx_win, mlx->collectible, 0, 0);
+	if (c == 'P')
+		mlx_put_image_to_window(mlx, mlx_win, mlx->player, 0, 0);
+	if (c == 'E')
+		mlx_put_image_to_window(mlx, mlx_win, mlx->exit, 0, 0);
+
+}
+
 int	load_img(t_mlx *mlx)
 {
 	char	*img_0;
@@ -35,7 +50,19 @@ int	load_img(t_mlx *mlx)
 	img_C = ".img/img_C.xpm";
 	img_P = ".img/img_P.xpm";
 	img_E = ".img/img_E.xpm";
-
+	mlx->ground = mlx_xpm_file_to_image(mlx , img_0, &ground->w, &ground->h);
+	mlx->wall = mlx_xpm_file_to_image(mlx, img_1, &wall->w, &wall->h);
+	mlx->collectible = mlx_xpm_file_to_image(mlx, img_C, &collectible->w,
+	&collectible->h);
+	mlx->player = mlx_xpm_file_to_image(mlx, img_P, &player->w, &player->h);
+	mlx->exit = mlx_xpm_file_to_image(mlx, img_E, &exit->w, &exit->h);
+	if (mlx->ground == NULL || mlx->wall == NULL ||
+	mlx->collectible == NULL || mlx->player == NULL || mlx->exit == NULL)
+	{
+		ft_error_int(ft_mess_error_mlx(3), 3);
+		return (1);
+	}
+	return (0);
 }
 
 

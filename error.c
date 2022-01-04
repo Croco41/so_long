@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 19:17:35 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/21 15:13:33 by cgranja          ###   ########.fr       */
+/*   Updated: 2022/01/04 16:52:38 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ char	*ft_mess_error_mlx(int e)
 		return ("Error, mlx is not initialised\n");
 	if (e == 2)
 		return ("Error, mlx window is not created\n");
+	if (e == 3)
+		return ("Error, image for texture are not downloaded\n");
 	return ("Error");
 }
 

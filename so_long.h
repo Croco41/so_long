@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 15:29:34 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/21 15:16:47 by cgranja          ###   ########.fr       */
+/*   Updated: 2022/01/06 14:02:36 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef struct s_img
 {
 	void		*img;
 	char		*addr;
-	int			*img_width;
-	int			*img_height;
+	int			*w;
+	int			*h;
 	int			bitspp;
 	int			line_length;
 	int			endian;
@@ -117,11 +117,13 @@ int		check_inter_line(char *str, char c);
 int		ft_nbline_checkform(int fd, int y);
 int		check_map(t_map *map, int l);
 
-int	ft_parse_map(t_admin *admin, char *argv);
+int		ft_parse_map(t_admin *admin, char *argv);
 
 
 
-//int	mlx_start(t_mlx *mlx, t_admin *admin);
+int		mlx_start(t_mlx *mlx, t_admin *admin);
+int		load_img(t_mlx *mlx);
+void	img_to_win(char c, t_mlx *mlx, t_admin *admin);
 
 
 

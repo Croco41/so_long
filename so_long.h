@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 15:29:34 by cgranja           #+#    #+#             */
-/*   Updated: 2022/01/06 14:02:36 by cgranja          ###   ########.fr       */
+/*   Updated: 2022/01/20 15:15:38 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,9 @@ int		mlx_start(t_mlx *mlx, t_admin *admin);
 int		load_img(t_mlx *mlx);
 void	img_to_win(char c, t_mlx *mlx, t_admin *admin);
 
-
+int		ft_move(t_mlx *mlx, t_player *player);
+int		ft_readkey(int keycode, t_mlx *mlx, t_player *player);
+int		ft_count_move(t_player *player, t_mlx *mlx);
 
 void	ft_free_map(t_map *map);
 void	ft_free_all_mlx(t_mlx *mlx);

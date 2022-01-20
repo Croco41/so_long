@@ -6,7 +6,7 @@
 #    By: cgranja <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 15:09:13 by cgranja           #+#    #+#              #
-#    Updated: 2021/12/20 15:33:48 by cgranja          ###   ########.fr        #
+#    Updated: 2022/01/20 15:05:18 by cgranja          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRC		=	main.c \
 			utils/ft_strdup.c \
 			utils/get_next_line.c \
 			utils/get_next_line_utils.c \
-#			mlx_start.c \
+			mlx_start.c \
+			moveplayer.c \
 
 OBJ		=	$(SRC:%.c=%.o)
 

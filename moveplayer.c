@@ -6,9 +6,11 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 13:17:47 by cgranja           #+#    #+#             */
-/*   Updated: 2022/01/20 14:29:04 by cgranja          ###   ########.fr       */
+/*   Updated: 2022/01/20 15:15:12 by cgranja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "so_long.h"
 
 int ft_move(t_mlx *mlx, t_player *player)
 {
@@ -34,9 +36,10 @@ int	ft_readkey(int keycode, t_mlx *mlx, t_player *player)
 	return (1);
 }
 
-int	ft_count_move(t_player *player)
+int	ft_count_move(t_player *player, t_mlx *mlx)
 {
 	player->move = 0;
 	printf(GREEN"Compteur de deplacement: \n");
-
+	mlx_key_hook(mlx->mlx_win, ft_readkey, mlx);
+	mlx_hook(mlx->mlx_win, 17, 1L<<17, ft_close, mlx);
 }

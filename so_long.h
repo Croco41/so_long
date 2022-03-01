@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 15:29:34 by cgranja           #+#    #+#             */
-/*   Updated: 2022/01/20 15:15:38 by cgranja          ###   ########.fr       */
+/*   Updated: 2022/03/02 00:33:31 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_mlx
 	int			width;
 	int			height;
 	t_img		window;
-	t_img		collectible;
+	t_img		coll;
 	t_img		player;
 	t_img		ground;
 	t_img		wall;
@@ -61,6 +61,8 @@ typedef struct s_mlx
 typedef struct s_player
 {
 	int			move;
+	int			px;
+	int			py;
 	int			x;
 	int			y;
 }				t_player;
@@ -122,8 +124,10 @@ int		ft_parse_map(t_admin *admin, char *argv);
 
 
 int		mlx_start(t_mlx *mlx, t_admin *admin);
+int		mlx_start_init(t_mlx *mlx, t_admin *admin);
 int		load_img(t_mlx *mlx);
-void	img_to_win(char c, t_mlx *mlx, t_admin *admin);
+void		img_to_win(char c, t_mlx *mlx, int line, int x);
+int		print_img(t_mlx *mlx, t_admin *admin);
 
 int		ft_move(t_mlx *mlx, t_player *player);
 int		ft_readkey(int keycode, t_mlx *mlx, t_player *player);

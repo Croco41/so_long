@@ -6,7 +6,7 @@
 #    By: cgranja <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 15:09:13 by cgranja           #+#    #+#              #
-#    Updated: 2022/01/20 15:05:18 by cgranja          ###   ########.fr        #
+#    Updated: 2022/03/01 16:00:37 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,14 +26,14 @@ SRC		=	main.c \
 			utils/get_next_line.c \
 			utils/get_next_line_utils.c \
 			mlx_start.c \
-			moveplayer.c \
+			#moveplayer.c \
 
-OBJ		=	$(SRC:%.c=%.o)
+OBJ		=	$(SRC:.c=.o)
 
 CC		=	gcc
 
 RM		=	/usr/bin/rm -f
-$(MAKE) = /usr/bin/make
+
 CFLAGS		=	-Wall -Wextra -Werror
 
 CFS			=	-fsanitize=address -g3
@@ -41,34 +41,31 @@ CFS			=	-fsanitize=address -g3
 
 all		:	$(NAME)
 
-.c.o:
-			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-$(NAME) :	mlx $(OBJ)
+$(NAME) :	$(OBJ)
+			make -C minilibx-linux
 			$(CC) $(CFLAGS) -o $(NAME) $(SRC) $(LIB)
 
-mlx		:
-			$(MAKE) -C minilibx-linux
-
 clean	:
-			$(MAKE) -C minilibx-linux clean
 			$(RM) $(OBJ)
 
 fclean	:	clean
 			$(RM) $(NAME)
+			make -C minilibx-linux clean
 
-#norm	:
-#			norminette $(SRC)
-#			norminette push_swap.h
+norm	:
+			norminette $(SRC)
+			norminette so_long.h
 
 re		:	fclean all
 
 f 		:	mlx $(OBJ)
+			make -C minilibx-linux
 			$(CC) $(CFLAGS) $(CFS) -o $(NAME) $(SRC) $(LIB)
 
 fre		:	fclean f
 
-.PHONY : all mlx clean fclean re f fre 
+.PHONY : all mlx clean fclean re f fre norm
 
 
 

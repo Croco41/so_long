@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 17:48:52 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/15 15:18:12 by cgranja          ###   ########.fr       */
+/*   Updated: 2022/03/01 23:39:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	ft_free_map(t_map *map)
 
 void	ft_free_all_mlx(t_mlx *mlx)
 {
-	if (mlx->collectible.img)
-		mlx_destroy_image(mlx->mlx, mlx->collectible.img);
+	if (mlx->coll.img)
+		mlx_destroy_image(mlx->mlx, mlx->coll.img);
 	if (mlx->player.img)
 		mlx_destroy_image(mlx->mlx, mlx->player.img);
 	if (mlx->ground.img)

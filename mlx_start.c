@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 18:51:17 by cgranja           #+#    #+#             */
-/*   Updated: 2022/01/06 15:09:50 by cgranja          ###   ########.fr       */
+/*   Updated: 2022/03/01 23:37:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,48 +22,28 @@ static void	ft_close(int keycode, t_mlx *mlx)
 		free(mlx->mlx);
 }
 
-void	img_to_win(char c, t_mlx *mlx, t_admin *admin)
+void	img_to_win(char c, t_mlx *mlx, int line, int x)
 {
+	int p;
+
+	p = PIX;
+	
 	if (c == '0')
-		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->ground.img, 0, 0);
+		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, 
+				mlx->ground.img, x * p, line * p);
 	if (c == '1')
-		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->wall.img, 0, 0);
+		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, 
+				mlx->wall.img, x * p, line * p);
 	if (c == 'C')
-		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->collectible.img, 0, 0);
+		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, 
+				mlx->coll.img, x * p, line * p);
 	if (c == 'P')
-		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->player.img, 0, 0);
+		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, 
+				mlx->player.img, x * p,  (line - 1) * p;
 	if (c == 'E')
-		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->exit.img, 0, 0);
-
+		mlx_put_image_to_window(mlx->mlx, 
+			mlx->mlx_win, mlx->exit.img, x * p, line * p);
 }
-/*
-int	load_img(t_mlx *mlx)
-{
-	char	*img_0;
-	char	*img_1;
-	char	*img_C;
-	char	*img_P;
-	char	*img_E;
-
-	img_0 = ".img/img_0.xpm";
-	img_1 = ".img/img_1.xpm";
-	img_C = ".img/img_C.xpm";
-	img_P = ".img/img_P.xpm";
-	img_E = ".img/img_E.xpm";
-	mlx->ground = mlx_xpm_file_to_image(mlx->mlx, img_0, &mlx->ground.w, &mlx->ground.h);
-	mlx->wall = mlx_xpm_file_to_image(mlx->mlx, img_1, &mlx->wall.w, &mlx->wall.h);
-	mlx->collectible = mlx_xpm_file_to_image(mlx->mlx, img_C, &mlx->collectible.w,
-	&mlx->collectible.h);
-	mlx->player = mlx_xpm_file_to_image(mlx->mlx, img_P, &mlx->player.w, &mlx->player.h);
-	mlx->exit = mlx_xpm_file_to_image(mlx->mlx, img_E, &mlx->exit.w, &mlx->exit.h);
-	if (mlx->ground == NULL || mlx->wall == NULL ||
-	mlx->collectible == NULL || mlx->player == NULL || mlx->exit == NULL)
-	{
-		ft_error_int(ft_mess_error_mlx(3), 3);
-		return (1);
-	}
-	return (0);
-}*/
 
 int	load_img(t_mlx *mlx)
 {
@@ -71,14 +51,14 @@ int	load_img(t_mlx *mlx)
 
 	pix = PIX;
 
-	mlx->ground = mlx_xpm_file_to_image(mlx->mlx, ".img/img_0.xpm", &pix, &pix);
-	mlx->wall = mlx_xpm_file_to_image(mlx->mlx, ".img/img_1.xpm", &pix, &pix);
-	mlx->collectible = mlx_xpm_file_to_image(mlx->mlx, ".img/img_C.xpm", &pix, 
+	mlx->ground.img = mlx_xpm_file_to_image(mlx->mlx, "./text/0.xpm", &pix, &pix);
+	mlx->wall.img = mlx_xpm_file_to_image(mlx->mlx, "./text/1.xpm", &pix, &pix);
+	mlx->coll.img = mlx_xpm_file_to_image(mlx->mlx, "./text/C.xpm", &pix, 
 	&pix);
-	mlx->player = mlx_xpm_file_to_image(mlx->mlx, ".img/img_P.xpm", &pix, &pix);
-	mlx->exit = mlx_xpm_file_to_image(mlx->mlx, ".img/img_E.xpm", &pix, &pix);
+	mlx->player.img = mlx_xpm_file_to_image(mlx->mlx, "./text/P.xpm", &pix, &pix);
+	mlx->exit.img = mlx_xpm_file_to_image(mlx->mlx, "./text/E.xpm", &pix, &pix);
 	if (mlx->ground == NULL || mlx->wall == NULL ||
-	mlx->collectible == NULL || mlx->player == NULL || mlx->exit == NULL)
+	mlx->coll.img == NULL || mlx->player.img == NULL || mlx->exit.img == NULL)
 	{
 		ft_error_int(ft_mess_error_mlx(3), 3);
 		return (1);

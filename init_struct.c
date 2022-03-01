@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 13:27:52 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/16 19:05:44 by cgranja          ###   ########.fr       */
+/*   Updated: 2022/03/01 20:07:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	init_img(t_img *cimg)
 {
 	cimg->img = NULL;
 	cimg->addr = NULL;
-	cimg->img_width = 0;
-	cimg->img_height = 0;
+	cimg->w = 0;
+	cimg->h = 0;
 	cimg->bitspp = 0;
 	cimg->line_length = 0;
 	cimg->endian = 0;
@@ -30,7 +30,7 @@ void	init_mlx(t_mlx *mlx)
 	mlx->width = 0;
 	mlx->height = 0;
 	init_img(&mlx->window);
-	init_img(&mlx->collectible);
+	init_img(&mlx->coll);
 	init_img(&mlx->player);
 	init_img(&mlx->ground);
 	init_img(&mlx->wall);

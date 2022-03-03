@@ -6,13 +6,13 @@
 #    By: cgranja <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 15:09:13 by cgranja           #+#    #+#              #
-#    Updated: 2022/03/01 16:00:37 by user42           ###   ########.fr        #
+#    Updated: 2022/03/03 02:19:55 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	so_long
 
-LIB		=	-L minilibx-linux -lmlx -lXext -lX11 -lm
+LIB		=	-L ./minilibx-linux -lmlx -lXext -lX11 
 
 SRC		=	main.c \
 			error.c \
@@ -25,14 +25,15 @@ SRC		=	main.c \
 			utils/ft_strdup.c \
 			utils/get_next_line.c \
 			utils/get_next_line_utils.c \
+			utils/ft_putnbr_fd.c \
 			mlx_start.c \
-			#moveplayer.c \
+			moveplayer.c \
 
 OBJ		=	$(SRC:.c=.o)
 
-CC		=	gcc
+CC		=	clang
 
-RM		=	/usr/bin/rm -f
+RM		=	rm -f
 
 CFLAGS		=	-Wall -Wextra -Werror
 
@@ -59,7 +60,7 @@ norm	:
 
 re		:	fclean all
 
-f 		:	mlx $(OBJ)
+f 		:	$(OBJ)
 			make -C minilibx-linux
 			$(CC) $(CFLAGS) $(CFS) -o $(NAME) $(SRC) $(LIB)
 

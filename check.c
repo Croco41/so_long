@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 21:01:37 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/21 15:08:09 by cgranja          ###   ########.fr       */
+/*   Updated: 2022/03/02 22:05:05 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int	ft_nbline_checkform(int fd, int y)
 			free(line);
 			return (ft_error_int(ft_mess_error(10), 10));
 		}
-		y++;
-		if (ret == 0 && line[0] != '\0')
+		//y++;
+		if (line[0] != '\0')
 			y++;
 		free(line);
 	}
@@ -110,6 +110,7 @@ int	check_map(t_map *map, int l)
 //		if (map->player != 1 || map->nbexit == 0 || map->nbcollecti == 0)
 //			return (ft_error(ft_mess_error(4), 4));
 	}
+//printf("%d collect: \n %d exit: \n" , map->nbcollecti, map->nbexit);
 	
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 15:29:34 by cgranja           #+#    #+#             */
-/*   Updated: 2022/03/03 02:35:14 by user42           ###   ########.fr       */
+/*   Updated: 2022/03/03 14:48:29 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,10 +131,11 @@ int		load_img(t_mlx *mlx);
 void		img_to_win(char c, t_mlx *mlx, int line, int x, t_player *player);
 int		print_img(t_mlx *mlx, t_map *map, t_player *player);
 
+void		move_up(t_admin *admin, t_player *player, t_map *map, int fx, int fy);
 void             move2(t_admin *admin, t_player *player, t_mlx *mlx, int to_y, int to_x);
 int		ft_move(t_admin *admin, t_player *player, t_mlx *mlx, int to_y, int to_x);
-int		ft_readkey(int keycode, t_admin *admin, t_player *player);
-int		ft_count_move(t_player *player, t_mlx *mlx);
+int		ft_readkey(int keycode, t_admin *admin);
+int		ft_count_move(t_admin *admin, t_player *player, t_mlx *mlx);
 
 int	ft_free_line(int ret, char *s);
 void	ft_free_map(t_map *map);

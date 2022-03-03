@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 18:51:17 by cgranja           #+#    #+#             */
-/*   Updated: 2022/03/03 02:52:42 by user42           ###   ########.fr       */
+/*   Updated: 2022/03/03 14:34:48 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,10 @@ void	img_to_win(char c, t_mlx *mlx, int line, int x, t_player *player)
 				mlx->coll.img, x * p, line * p);
 	if (c == 'P')
 	{
+		player->x = x;
+                player->y = line;
 		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, 
 			mlx->player.img, x * p, line * p);
-		player->x = x;
-		player->y = line;
-		printf("%d x2: | %d y2: \n", player->x, player->y);
-
 	}
 	if (c == 'E')
 		mlx_put_image_to_window(mlx->mlx, 
@@ -127,12 +125,13 @@ int	mlx_start_init(t_mlx *mlx, t_admin *admin, t_map *map)
 		ft_close(admin);
 		return(1);
 	}
-	if (ft_count_move(&admin->player, mlx) == 1)
+	if (ft_count_move(admin, &admin->player, mlx) == 1)
 		return (1);
-
+//	printf("%d xbh: | %d ybh: \n", admin->player.x, admin->player.y);
 //	mlx_hook(mlx->mlx_win, 2, 1L << 0, key_hook, mlx);
 	mlx_hook(mlx->mlx_win, 17, 1L << 17, ft_closeok, mlx);
 //	mlx_hook(mlx->mlx_win, 15, 1L << 16, reset_window, admin);
+//	printf("%d xah: | %d yah: \n", admin->player.x, admin->player.y);
 	mlx_loop(mlx->mlx);
 	return (0);
 }

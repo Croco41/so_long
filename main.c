@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 15:27:31 by cgranja           #+#    #+#             */
-/*   Updated: 2022/03/03 01:14:20 by user42           ###   ########.fr       */
+/*   Updated: 2022/03/03 16:44:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,12 @@ int	ft_create_map(t_admin *admin, int fd, int y)
 		//	return (ft_error_int(ft_mess_error(9), 9));
 	}
 	//free(line);
-	//printf("%d y :  | %s string : \n" , y, admin->map.map[y]);
+/*	printf("je suis la");
+	printf("%d pl :  | %d coll : \n" , admin->map.nbplayer, admin->map.nbplayer);
 	if (admin->map.nbplayer != 1 || admin->map.nbexit == 0 
 		|| admin->map.nbcollecti == 0)
 		return (ft_error_int(ft_mess_error(4), 4));
-	return (0);
+*/	return (0);
 }
 
 	
@@ -120,7 +121,7 @@ int	ft_check_wall_map(t_admin *admin, int y)
 	y++;
 	while (y < admin->map.nbline - 1)
 	{
-		if (check_inter_line(admin->map.map[y], 1) != 0)
+		if (check_inter_line(admin->map.map[y], '1') != 0)
 			return (1);
 		y++;
 	}

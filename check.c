@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 21:01:37 by cgranja           #+#    #+#             */
-/*   Updated: 2022/03/02 22:05:05 by user42           ###   ########.fr       */
+/*   Updated: 2022/03/03 16:43:14 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@ int check_map_first_lastline(char *str, char c) // c = 1
 
 	i = 0;
 	if (!str || str[0] == '\0')
+	{
 		return (1);
-	while (*str)
+	}
+	while (str && str[i]) 
 	{
 		if (str[i] != c)
+		{
 			return (1);
+		}
 		i++;
 	}
 	return (0);
@@ -30,12 +34,16 @@ int check_map_first_lastline(char *str, char c) // c = 1
 
 int check_inter_line(char *str, char c) // a appeler pour chaque lignea verifier
 {
-	while (*str)
+	int len;
+
+	len = ft_strlen(str);
+	if (str[0] != c)
 	{
-		if (str[0] != c)
-			return (1);
-		if (str[ft_strlen(str)] != c)
-			return (1);
+		return (1);
+	}
+	if (str[len -1] != c)
+	{
+		return (1);
 	}
 	return (0);
 }
@@ -107,8 +115,6 @@ int	check_map(t_map *map, int l)
 			map->nbcollecti++;
 		else if (s[i] != '1' && s[i] != '0')
 			return (ft_error_int(ft_mess_error(3), 3));
-//		if (map->player != 1 || map->nbexit == 0 || map->nbcollecti == 0)
-//			return (ft_error(ft_mess_error(4), 4));
 	}
 //printf("%d collect: \n %d exit: \n" , map->nbcollecti, map->nbexit);
 	

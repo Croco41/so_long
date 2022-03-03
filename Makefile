@@ -6,7 +6,7 @@
 #    By: cgranja <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 15:09:13 by cgranja           #+#    #+#              #
-#    Updated: 2022/03/03 02:19:55 by user42           ###   ########.fr        #
+#    Updated: 2022/03/03 12:52:39 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC		=	main.c \
 			utils/ft_putnbr_fd.c \
 			mlx_start.c \
 			moveplayer.c \
+			movements.c \
 
 OBJ		=	$(SRC:.c=.o)
 

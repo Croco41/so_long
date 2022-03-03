@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 19:43:08 by cgranja           #+#    #+#             */
-/*   Updated: 2022/03/03 01:28:24 by user42           ###   ########.fr       */
+/*   Updated: 2022/03/03 16:42:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,13 @@ int	ft_parse_map(t_admin *admin, char *argv)
 	if (ft_check_wall_map(admin, 0) > 0)
 	{
 		ft_free_map(&admin->map);
-		return (1);
+		return (ft_error_int(ft_mess_error(3), 3));
+	}
+	if (admin->map.nbplayer != 1 || admin->map.nbexit == 0
+                || admin->map.nbcollecti == 0)
+	{
+		ft_free_map(&admin->map);
+		return (ft_error_int(ft_mess_error(4), 4));
 	}
 	return (0);
 }

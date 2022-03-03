@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 19:17:35 by cgranja           #+#    #+#             */
-/*   Updated: 2022/03/03 15:48:48 by user42           ###   ########.fr       */
+/*   Updated: 2022/03/03 19:23:59 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ char	*ft_mess_error(int e)
 	if (e == 2)
 		return ("Error, too much arguments\n");
 	if (e == 3)
-		return("Error, character not allowed in map\n");
+		return ("Error, character not allowed in map\n");
 	if (e == 4)
-		return("Error, we need only on player and at least one exit and one collectible in map\n");
+		return ("Error, we need 1 player and at least 1 exit and 1 collect.\n");
 	if (e == 5)
-		return("Return of -1 of GNL\n");
+		return ("Return of -1 of GNL\n");
 	if (e == 6)
-		return("Error, File is a directory\n");
+		return ("Error, File is a directory\n");
 	if (e == 7)
-		return("Error, bad Extension file\n");
+		return ("Error, bad Extension file\n");
 	if (e == 8)
-		return("Error, invalid name\n");
+		return ("Error, invalid name\n");
 	if (e == 9)
 		return ("Error, Return of -1 of GNL create map\n");
 	if (e == 10)
@@ -50,20 +50,19 @@ char	*ft_mess_error_mlx(int e)
 	return ("Error");
 }
 
-
-void	*ft_error(char *str, void *e) //en char *str :fonctin ft_mess_error
+void	ft_error(char *str)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (str[++i])
 		write (2, &str[i], 1);
-	return (e);
+	return ;
 }
 
 int	ft_error_int(char *str, int e)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (str[++i])
@@ -71,4 +70,3 @@ int	ft_error_int(char *str, int e)
 	exit(0);
 	return (e);
 }
-

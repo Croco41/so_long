@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 15:54:08 by cgranja           #+#    #+#             */
-/*   Updated: 2021/12/14 15:56:51 by cgranja          ###   ########.fr       */
+/*   Updated: 2022/03/03 23:54:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*ft_saver(char *str)
 	return (str);
 }
 
-void	yenamarre(char **line, int fd, char **str)
+void	gnlsuite(char **line, int fd, char **str)
 {
 	*line = ft_strcut_gnl(str[fd]);
 	str[fd] = ft_saver(str[fd]);
@@ -105,7 +105,7 @@ int	get_next_line(int fd, char **line)
 		if (ft_check_n(str[fd]) == 0)
 			r = read(fd, buf, BUFFER_SIZE);
 	}
-	yenamarre(line, fd, str);
+	gnlsuite(line, fd, str);
 	if (r == 0)
 		return (0);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 15:29:34 by cgranja           #+#    #+#             */
-/*   Updated: 2022/03/03 14:48:29 by user42           ###   ########.fr       */
+/*   Updated: 2022/03/04 00:08:31 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ typedef struct s_map
 	int			nbplayer;
 	int			sizeline;
 	int			nbline;
+	int			other;
+	int			error;
 	t_player	player;
 }				t_map;
 
@@ -85,26 +87,34 @@ typedef struct s_admin
 	t_player	player;
 }				t_admin;
 
-
+/*
+***********************INITIALISATION**********************
+*/
 void	init_img(t_img *cimg);
 void	init_mlx(t_mlx *cmlx);
 void	init_map(t_map *map);
 void	init_struct(t_admin *admin);
 void	list_init(t_img *img, t_mlx *mlx);
 
-
-
 int		main(int argc, char **argv);
-t_map	**ft_open_map(t_map **map, int fd);
+//t_map		**ft_open_map(t_map **map, int fd);
 int		ft_opencheckfile(char *s);
 
 int		ft_create_map(t_admin *admin, int fd, int y);
 int		ft_check_wall_map(t_admin *admin, int y);
 
+/*
+ * *********************ERROR********************************
+*/
+
 char	*ft_mess_error(int e);
 char	*ft_mess_error_mlx(int e);
-void	*ft_error(char *str, void *e);
+void	ft_error(char *str);
 int		ft_error_int(char *str, int e);
+
+/*
+ * ********************UTILS*********************************
+ */
 
 int		ft_strncmp(char *s1, char *s2, size_t n);
 int		ft_strlen(char *str);
@@ -114,34 +124,40 @@ int		ft_strn(char *s);
 char	*ft_strjoin_gnl(char *s1, char *s2);
 void	ft_putnbr_fd(int n, int fd);
 
-
+/*
+ ***********************CHECK MAP******************************* 
+ */
 
 int		check_map_first_lastline(char *str, char c);
 int		check_inter_line(char *str, char c);
-int		ft_nbline_checkform(int fd, int y);
+int		ft_nbline_checkform(int fd, int y, int sizel, int error);
 int		check_map(t_map *map, int l);
 
 int		ft_parse_map(t_admin *admin, char *argv);
+int		ft_parse_map_next(t_admin *admin);
 
-
+/*
+ *************************GRAPHICAL******************************
+ */
 
 int		mlx_start(t_mlx *mlx, t_admin *admin);
 int		mlx_start_init(t_mlx *mlx, t_admin *admin, t_map *map);
 int		load_img(t_mlx *mlx);
-void		img_to_win(char c, t_mlx *mlx, int line, int x, t_player *player);
-int		print_img(t_mlx *mlx, t_map *map, t_player *player);
+void	img_to_win(char c, t_admin *admin, int line, int x);
+int		print_img(t_map *map, t_admin *admin);
 
-void		move_up(t_admin *admin, t_player *player, t_map *map, int fx, int fy);
-void             move2(t_admin *admin, t_player *player, t_mlx *mlx, int to_y, int to_x);
-int		ft_move(t_admin *admin, t_player *player, t_mlx *mlx, int to_y, int to_x);
+void	move_up(t_admin *admin, t_map *map, int fx, int fy);
 int		ft_readkey(int keycode, t_admin *admin);
 int		ft_count_move(t_admin *admin, t_player *player, t_mlx *mlx);
 
-int	ft_free_line(int ret, char *s);
+/*
+ * **************************FREE************************************
+*/
+
+int		ft_free_line(int ret, char *s);
 void	ft_free_map(t_map *map);
 void	ft_free_all_mlx(t_mlx *mlx);
-int	ft_close(t_admin *admin);
-int     ft_closeok(t_admin *admin);
-
+int		ft_close(t_admin *admin);
+int		ft_closeok(t_admin *admin);
 
 #endif

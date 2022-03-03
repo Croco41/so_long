@@ -6,13 +6,13 @@
 /*   By: cgranja <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 21:01:37 by cgranja           #+#    #+#             */
-/*   Updated: 2022/03/03 16:43:14 by user42           ###   ########.fr       */
+/*   Updated: 2022/03/04 00:09:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int check_map_first_lastline(char *str, char c) // c = 1
+int	check_map_first_lastline(char *str, char c)
 {
 	int	i;
 
@@ -21,7 +21,7 @@ int check_map_first_lastline(char *str, char c) // c = 1
 	{
 		return (1);
 	}
-	while (str && str[i]) 
+	while (str && str[i])
 	{
 		if (str[i] != c)
 		{
@@ -32,9 +32,9 @@ int check_map_first_lastline(char *str, char c) // c = 1
 	return (0);
 }
 
-int check_inter_line(char *str, char c) // a appeler pour chaque lignea verifier
+int	check_inter_line(char *str, char c)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(str);
 	if (str[0] != c)
@@ -48,10 +48,9 @@ int check_inter_line(char *str, char c) // a appeler pour chaque lignea verifier
 	return (0);
 }
 
-int	ft_nbline_checkform(int fd, int y)
+int	ft_nbline_checkform(int fd, int y, int sizel, int error)
 {
 	char	*line;
-	int		sizel;
 	int		ret;
 
 	ret = get_next_line(fd, &line);
@@ -67,30 +66,15 @@ int	ft_nbline_checkform(int fd, int y)
 			return (ft_error_int(ft_mess_error(5), 5));
 		if ((ret == 1 && line[0] != '\0' && ft_strlen(line) != sizel)
 			|| (line[0] == '\0' && ret == 1))
-		{
-			free(line);
-			return (ft_error_int(ft_mess_error(10), 10));
-		}
-		//y++;
+			error++;
 		if (line[0] != '\0')
 			y++;
 		free(line);
 	}
+	if (error > 0)
+		return (ft_error_int(ft_mess_error(10), 10));
 	return (y);
 }
-
-/*
-int	check_form_map(char *str, char *strnext)
-{
-	int	size;
-	int	i;
-
-	size = ft_strlen(str);
-	i = ft_strlen(strnext);
-	if (size != i)
-		return (1);
-	return (0);
-}*/
 
 int	check_map(t_map *map, int l)
 {
@@ -100,7 +84,6 @@ int	check_map(t_map *map, int l)
 	s = map->map[l];
 	i = -1;
 	map->sizeline = ft_strlen(s);
-//printf("%s \n %d line: \n" , s, l);
 	while (s[++i])
 	{
 		if (s[i] == 'P')
@@ -113,10 +96,10 @@ int	check_map(t_map *map, int l)
 			map->nbexit++;
 		else if (s[i] == 'C')
 			map->nbcollecti++;
-		else if (s[i] != '1' && s[i] != '0')
-			return (ft_error_int(ft_mess_error(3), 3));
+		else if (s[i] == '1' || s[i] == '0')
+			map->other++;
+		else
+			map->error++;
 	}
-//printf("%d collect: \n %d exit: \n" , map->nbcollecti, map->nbexit);
-	
 	return (0);
 }

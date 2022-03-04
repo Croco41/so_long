@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 12:33:07 by user42            #+#    #+#             */
-/*   Updated: 2022/03/03 22:37:23 by user42           ###   ########.fr       */
+/*   Updated: 2022/03/04 12:25:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ void	move_up(t_admin *admin, t_map *map, int fx, int fy)
 	if (map->map[fy][fx] == 'E')
 	{
 		if (map->nbcollecti == 0)
+		{
+			printf(YELLOW"\n!!YOU WIN!!\n"CYAN"Mouvs: %d\n"RESET"\n",
+				admin->player.move);
 			ft_closeok(admin);
+		}
 		return ;
 	}
 	admin->player.move++;
